@@ -6359,6 +6359,7 @@ LGraphNode.prototype.executeAction = function(action)
 
         	
         } else if (e.which == 3 || this.pointer_is_double) {
+            var clicking_canvas_bg = false;
 			
             //right button
 			if (this.allow_interaction && !skip_action && !this.read_only){
@@ -6375,9 +6376,12 @@ LGraphNode.prototype.executeAction = function(action)
 						this.selectNodes([node]);
 					}
 				}
+                else{
+                    clicking_canvas_bg = true
+                }
 				
 				// show menu on this node
-				this.processContextMenu(node, e);
+				// this.processContextMenu(node, e);
 			}
 
             if (!skip_action && clicking_canvas_bg && this.allow_dragcanvas && this.remap_canvas_drag_to_rmb) {
