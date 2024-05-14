@@ -5483,6 +5483,7 @@ LGraphNode.prototype.executeAction = function(action)
         this.highlighted_links = {};
 
 		this.dragging_canvas = false;
+		this.RED_dragging = false;
 
         this.dirty_canvas = true;
         this.dirty_bgcanvas = true;
@@ -6508,6 +6509,7 @@ LGraphNode.prototype.executeAction = function(action)
             this.ds.offset[1] += delta[1] / this.ds.scale;
             this.dirty_canvas = true;
             this.dirty_bgcanvas = true;
+            this.RED_dragging = true;
         } else if ((this.allow_interaction || (node && node.flags.allow_interaction)) && !this.read_only) {
             if (this.connecting_node) {
                 this.dirty_canvas = true;
@@ -6974,7 +6976,13 @@ LGraphNode.prototype.executeAction = function(action)
             //trace("right");
             this.dirty_canvas = true;
             this.dragging_canvas = false;
+
+            if(!this.RED_dragging){
+				this.processContextMenu(node, e);
+            }
         }
+
+        this.RED_dragging = false
 
         /*
 		if((this.dirty_canvas || this.dirty_bgcanvas) && this.rendering_timer_id == null)
