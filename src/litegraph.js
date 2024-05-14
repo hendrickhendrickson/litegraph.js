@@ -5376,6 +5376,7 @@ LGraphNode.prototype.executeAction = function(action)
         this.allow_searchbox = true;
         this.allow_reconnect_links = true; //allows to change a connection with having to redo it again
 		this.align_to_grid = false; //snap to grid
+        this.remap_canvas_drag_to_rmb = false; //remaps canvas drag interaction from lmb to rmb
 
         this.drag_mode = false;
         this.dragging_rectangle = null;
@@ -6283,7 +6284,7 @@ LGraphNode.prototype.executeAction = function(action)
 				}
             }
 
-            if (!skip_action && clicking_canvas_bg && this.allow_dragcanvas) {
+            if (!skip_action && clicking_canvas_bg && this.allow_dragcanvas && !this.remap_canvas_drag_to_rmb) {
             	//console.log("pointerevents: dragging_canvas start");
             	this.dragging_canvas = true;
             }
@@ -6378,6 +6379,11 @@ LGraphNode.prototype.executeAction = function(action)
 				// show menu on this node
 				this.processContextMenu(node, e);
 			}
+
+            if (!skip_action && clicking_canvas_bg && this.allow_dragcanvas && this.remap_canvas_drag_to_rmb) {
+            	//console.log("pointerevents: dragging_canvas start");
+            	this.dragging_canvas = true;
+            }
 			
         }
 
