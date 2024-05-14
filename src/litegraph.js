@@ -6286,7 +6286,8 @@ LGraphNode.prototype.executeAction = function(action)
                 this.dragging_rectangle[2] = 1;
                 this.dragging_rectangle[3] = 1;
                 skip_action = true;
-                
+            }
+
         } else if (e.which == 2) {
             //middle button
         	
